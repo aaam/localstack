@@ -110,7 +110,7 @@ web:               ## Start web application (dashboard)
 
 test:              ## Run automated tests
 	make lint && \
-		($(VENV_RUN); DEBUG=$(DEBUG) PYTHONPATH=`pwd` nosetests $(NOSE_ARGS) --with-timer --with-coverage --logging-level=WARNING --nocapture --no-skip --exe --cover-erase --cover-tests --cover-inclusive --cover-package=localstack --with-xunit --exclude='$(VENV_DIR).*' --ignore-files='lambda_python3.py' $(TEST_PATH))
+		($(VENV_RUN); DEBUG=$(DEBUG) PYTHONPATH=`pwd` nosetests $(NOSE_ARGS) --verbose --with-timer --with-coverage --logging-level=DEBUG --nocapture --no-skip --exe --cover-erase --cover-tests --cover-inclusive --cover-package=localstack --with-xunit --exclude='$(VENV_DIR).*' --ignore-files='lambda_python3.py' $(TEST_PATH))
 
 test-docker:       ## Run automated tests in Docker
 	ENTRYPOINT="--entrypoint=" CMD="make test" make docker-run
